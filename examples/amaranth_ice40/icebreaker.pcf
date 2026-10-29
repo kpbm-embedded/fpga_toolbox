@@ -1,0 +1,4 @@
+# iCEBreaker v1.0 (1BitSquared) pins used by blinky.v
+set_io -nowarn CLK 35
+set_io -nowarn LEDR_N 11
+set_io -nowarn LEDG_N 37

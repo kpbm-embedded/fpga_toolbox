@@ -1,0 +1,10 @@
+# Second method: a miter circuit and a SAT proof over all inputs (good for arithmetic like this multiplier)
+read_verilog -sv gold.v
+rename @NAME@ gold
+read_verilog -sv gate.v
+rename @NAME@ gate
+proc
+opt_clean
+miter -equiv -flatten -make_outputs gold gate miter
+hierarchy -top miter
+sat -verify -prove trigger 0 -show-inputs -show-outputs miter

@@ -1,0 +1,15 @@
+# Equivalence of gold.v and gate.v for module @NAME@ (combinational: equiv_simple; registers: equiv_induct)
+read_verilog -sv gold.v
+prep -top @NAME@
+design -stash gold
+read_verilog -sv gate.v
+prep -top @NAME@
+design -stash gate
+design -copy-from gold -as gold @NAME@
+design -copy-from gate -as gate @NAME@
+equiv_make gold gate equiv
+hierarchy -top equiv
+async2sync
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

@@ -1,0 +1,5 @@
+# iCEBreaker v1.0 pins (full list: github.com/icebreaker-fpga/icebreaker-examples)
+set_io -nowarn CLK 35
+set_io -nowarn BTN_N 10
+set_io -nowarn LEDR_N 11
+set_io -nowarn LEDG_N 37

@@ -1,0 +1,4 @@
+# iCEBreaker v1.0: 12 MHz clock, FTDI channel B UART (FPGA TX on pin 9), green LED
+set_io -nowarn CLK 35
+set_io -nowarn TX 9
+set_io -nowarn LEDG_N 37

@@ -1,0 +1,50 @@
+id = "32_09"
+name = "fpga"
+kind = "tool"
+status = "active"
+tags = ["embedded"]
+
+[backup]
+tier = "critical"
+
+[tool]
+name = "fpga"
+launcher = "fpga-box"
+aliases = ["fpga-box"]
+env_var = "BOX_FPGA"
+env_path = "."
+native = "native/native.zsh"
+native_provides = ["ecppack", "gtkwave", "icepack", "iverilog", "litex_sim", "nextpnr-ecp5", "nextpnr-ice40", "verilator", "verilator_coverage", "vvp", "yosys", "yosys-config"]
+native_off_compat = ["FPGABOX_NATIVE_OFF"]
+network = ["bootstrap", "install", "update"]
+
+[scripts.fpga-box]
+schema = 1
+kind = "launcher"
+path = "fpga-box"
+summary = "self-contained FPGA/HDL tools (Yosys, nextpnr, Verilator, Icarus, LiteX), pinned pixi env."
+interpreter = "sh"
+commands = ["help", "where", "bootstrap", "install", "update", "clean", "status", "doctor", "shell", "run", "test", "new", "examples", "native", "relocate", "pack", "tools", "sim", "litex-sim", "wave"]
+flags = ["--all", "--binary", "--check", "--cpu-type", "--dir", "--dry-run", "--env", "--force", "--help", "--no-demos", "--out", "--print", "--with-cache", "--yes"]
+reads = { global = ["BOXT_DRY_RUN"] }
+dry_run_flag = "--dry-run"
+apply_flag = { clean = "--yes" }
+scope = "global"
+
+[scripts."test_dry_run.sh"]
+schema = 1
+kind = "test"
+path = "tests/test_dry_run.sh"
+summary = "Every fpga-box command in --dry-run mode (no downloads, builds, moves or launches)"
+interpreter = "bash"
+depends = { scripts = ["fpga-box"] }
+test = ["tests/test_dry_run.sh"]
+
+[scripts."test_smoke.sh"]
+schema = 1
+kind = "test"
+path = "tests/test_smoke.sh"
+summary = "Smoke test of the fpga-box env: every tool starts and does one small real job."
+interpreter = "bash"
+depends = { scripts = ["fpga-box"] }
+test = ["tests/test_smoke.sh"]

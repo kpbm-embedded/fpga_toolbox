@@ -1,0 +1,15 @@
+# yosys equivalence check: gold vs gate for TOP (@TOP@), comb (equiv_simple) + sequential (equiv_induct)
+read_verilog @DEFS@ gold.v
+prep -top @TOP@
+design -stash gold
+read_verilog @DEFS@ gate.v
+prep -top @TOP@
+design -stash gate
+design -copy-from gold -as gold @TOP@
+design -copy-from gate -as gate @TOP@
+equiv_make gold gate equiv
+hierarchy -top equiv
+async2sync
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

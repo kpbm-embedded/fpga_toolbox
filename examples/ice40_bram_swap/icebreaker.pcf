@@ -1,0 +1,9 @@
+# iCEBreaker v1.0: clock, the two user LEDs and the 5 LEDs of the snap-off PMOD2 (pins 26 27 25 23 21)
+set_io -nowarn CLK 35
+set_io -nowarn LEDR_N 11
+set_io -nowarn LEDG_N 37
+set_io -nowarn LED[0] 26
+set_io -nowarn LED[1] 27
+set_io -nowarn LED[2] 25
+set_io -nowarn LED[3] 23
+set_io -nowarn LED[4] 21

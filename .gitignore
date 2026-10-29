@@ -1,0 +1,26 @@
+# fpga-box: only sources go into git. Everything below is downloaded, solved or produced again by
+# ./fpga-box bootstrap | install | examples test (pins: pixi.toml + pixi.lock, pixi sha256 in fpga-box).
+/.bin/
+/.pixi/
+/cache
+/install/
+/native/
+/build/
+/log/
+/config/local.env
+*.tar.zst
+*.tar.gz
+# build output when an example or a template instance is run inside the folder
+build/
+obj_dir/
+sim_build/
+__pycache__/
+*.pyc
+*.vcd
+*.fst
+*.vvp
+results.xml
+*.asc
+*.bin
+*.bit
+*.json.tmp
